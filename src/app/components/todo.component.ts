@@ -42,7 +42,7 @@ export class TodoComponent implements OnInit{
     const dd = new Date(this.todoForm.get('dueDate')?.value)
     const today = new Date()
 
-    if ((this.taskArray.length === 0) || (dd<today) ||this.todoForm.invalid){
+    if ((this.taskArray.length <= 0) || (dd<today) ||this.todoForm.invalid){
       return true
     }
     
