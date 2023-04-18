@@ -1,0 +1,56 @@
+<form [formGroup]="todoForm" (ngSubmit)="processToDo()">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td>
+                <input type="text" size="30" formControlName="name">
+                <span *ngIf="todoForm.get('name')?.invalid && todoForm.get('name')?.dirty">Mandatory</span>
+            </td>
+        </tr>
+        <tr>
+            <td>Due Date:</td>
+            <td>
+                <input type="Date" size="30" formControlName="dueDate">
+                <span *ngIf="todoForm.get('dueDate')?.invalid && todoForm.get('dueDate')?.dirty">Mandatory</span>
+            </td>
+        </tr>
+        <tr>
+            <td><button type="submit" [disabled]="isFormInvalid()">Save</button></td>
+            <td><button type="button" (click)="addTask()">Add Task</button></td>
+        </tr>
+    </table>
+
+    <div *ngIf="taskArray.length> 0; else noTasks">
+        <h2>Task</h2>
+        <table formArrayName="tasks">
+            <thead>
+                <tr>
+                    <td>Task Name</td>
+                    <td>Priority</td>
+                </tr>
+            </thead>
+            <tr *ngFor="let it of taskArray.controls; let i = index" [formGroupName]="i">
+                <td>
+                    <input type="text" size="30" placeholder="task name" formControlName="taskName">
+                </td>
+                <td>
+                    <select formControlName="priority">
+                        <option value="low">Low</option>
+                        <option value="med">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </td>
+                <td>
+                    <button (click)="deleteItem(i)">X</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+</form>
+
+<ng-template #noTasks>
+    <h2> NO TASK</h2>
+</ng-template>
+        
+
