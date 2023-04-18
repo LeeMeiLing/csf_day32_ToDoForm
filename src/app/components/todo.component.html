@@ -10,7 +10,8 @@
         <tr>
             <td>Due Date:</td>
             <td>
-                <input type="Date" size="30" formControlName="dueDate">
+                <!-- <input type="date" size="30" formControlName="dueDate"> -->
+                <input type="datetime-local" size="30" formControlName="dueDate">
                 <span *ngIf="todoForm.get('dueDate')?.invalid && todoForm.get('dueDate')?.dirty">Mandatory</span>
             </td>
         </tr>

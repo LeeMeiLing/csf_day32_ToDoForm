@@ -1,6 +1,6 @@
 <h1>To Do</h1>
 
-<app-todo (sendForm)="processTodo($event)"></app-todo>
+<app-todo (sendForm)="processTodo($event)" [localTodo]="todo"></app-todo>
 
 <hr>
 <div *ngIf="todoList.length>0">
